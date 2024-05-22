@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FoodResponseMessage {
 
-    private String token;
-
     private Long orderId;
 
     private Boolean completed;
+
+    private Double totalCost;
 
 }
 

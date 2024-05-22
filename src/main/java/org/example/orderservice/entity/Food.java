@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Food {
 
     @EmbeddedId
-    private FoodKey id;
+    private FoodKey id = new FoodKey();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("orderId")

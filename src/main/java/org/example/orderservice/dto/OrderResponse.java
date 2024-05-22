@@ -3,6 +3,7 @@ package org.example.orderservice.dto;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -15,7 +16,7 @@ public class OrderResponse {
 
     private String status;
 
-    private Map<Long, Integer> foods;
+    private Map<Long, Integer> foods = new HashMap<>();
 
     private String address;
 

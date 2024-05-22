@@ -7,7 +7,10 @@ import org.example.orderservice.entity.Food;
 import org.example.orderservice.entity.FoodKey;
 import org.example.orderservice.entity.Order;
 import org.example.orderservice.entity.OrderStatus;
+import org.example.orderservice.mapper.OrderMapper;
 import org.example.orderservice.repository.OrderRepository;
+import org.example.orderservice.service.OrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,34 +21,20 @@ import java.time.Instant;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
+
+    private final OrderMapper orderMapper;
 
     @PostMapping
     public ResponseEntity<OrderResponse> createOrder(@RequestBody CreateOrderRequest request) {
 
-        Order order = new Order();
+        Order order = orderMapper.requestToOrder(request);
 
-        order.setCreatedAt(Instant.now());
-        order.setAddress(request.getAddress());
-        order.setStatus(OrderStatus.Assemble);
-        order.setUserId(2L);
-        order.setTotalCost(1200d);
-
-        Food food = new Food();
-        food.setOrder(order);
-        food.setId(new FoodKey());
-        food.getId().setFoodId(3L);
-        food.setAmount(3);
-
-
-        order.getFoods().add(food);
-
-
-
-        orderRepository.save(order);
-
-        return ResponseEntity.notFound().build();
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(orderMapper.orderToResponse(orderService.insertOrder(order)));
     }
+
 
 
 }

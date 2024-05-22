@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -11,10 +12,8 @@ import java.util.Map;
 @NoArgsConstructor
 public class FoodRequestMessage {
 
-    private String token;
-
     private Long orderId;
 
-    private Map<Long, Integer> foods;
+    private Map<Long, Integer> foods  = new HashMap<>();
 
 }
