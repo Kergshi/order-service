@@ -23,7 +23,7 @@ public class Food {
     private Order order;
 
     @Column(name = "amount")
-    private Integer amount;
+    private Integer count;
 
 
 }

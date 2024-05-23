@@ -64,7 +64,7 @@ public class OrderService {
             return;
         }
 
-        order.setTotalCost(foodResponseMessage.getTotalCost());
+        order.setAmount(foodResponseMessage.getAmount());
         order.setStatus(OrderStatus.Payment);
         orderRepository.save(order);
 

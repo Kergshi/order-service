@@ -19,14 +19,14 @@ public class OrderMapper {
 
         //TODO  replace random to get User ID from token
         order.setUserId((new Random().nextLong(10000L)));
-        order.setTotalCost(-1d);
+        order.setAmount(-1d);
         order.setAddress(request.getAddress());
 
         for (Map.Entry<Long, Integer> requestFood : request.getFoods().entrySet()) {
             Food food = new Food();
             food.setOrder(order);
             food.getId().setFoodId(requestFood.getKey());
-            food.setAmount(requestFood.getValue());
+            food.setCount(requestFood.getValue());
 
             order.getFoods().add(food);
         }
@@ -44,7 +44,7 @@ public class OrderMapper {
         orderResponse.setCompletedAt(order.getCompletedAt());
 
         for (Food food : order.getFoods()) {
-            orderResponse.getFoods().put(food.getId().getFoodId(), food.getAmount());
+            orderResponse.getFoods().put(food.getId().getFoodId(), food.getCount());
         }
 
         return orderResponse;
@@ -56,7 +56,7 @@ public class OrderMapper {
         message.setOrderId(order.getId());
 
         for (Food food : order.getFoods()) {
-            message.getFoods().put(food.getId().getFoodId(), food.getAmount());
+            message.getFoods().put(food.getId().getFoodId(), food.getCount());
         }
 
         return message;

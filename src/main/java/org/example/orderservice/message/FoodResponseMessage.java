@@ -13,7 +13,7 @@ public class FoodResponseMessage {
 
     private Boolean completed;
 
-    private Double totalCost;
+    private Double amount;
 
 }
 

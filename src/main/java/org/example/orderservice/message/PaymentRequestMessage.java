@@ -13,6 +13,6 @@ public class PaymentRequestMessage {
 
     private Long orderId;
 
-    private Double totalCost;
+    private Double amount;
 
 }

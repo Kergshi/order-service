@@ -30,7 +30,7 @@ public class Order {
     private String address;
 
     @Column(name = "totalcost")
-    private Double totalCost;
+    private Double amount;
 
     @Column(name = "created_at")
     private Instant createdAt;
